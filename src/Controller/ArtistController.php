@@ -19,7 +19,7 @@ class ArtistController extends AbstractController
 
         return $this->render('artist/index.html.twig', [
             'artists' => $artists,
-            'resource' => 'artistes',
+            'resource' => 'artists',
         ]);
 
     } 
