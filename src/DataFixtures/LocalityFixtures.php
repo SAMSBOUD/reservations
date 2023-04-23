@@ -23,9 +23,10 @@ class LocalityFixtures extends Fixture
     foreach ($localities as $record) {
             $locality = new Locality ();
             $locality->setPostalCode($record['postal_code']);
-            $locality->setLocality($record['locality']);
-            
+            $locality->setLocality($record['locality']); 
             $manager->persist($locality);
+
+            $this->addReference($record['locality'], $locality);
         }
 
         $manager->flush();

@@ -1,14 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des types{% endblock %}
+{% block title %}Liste des localités {% endblock %}
 
 {% block body %}
-    <h1>Liste des {{ resource }}</h1>
 
-    <ul>
-    {% for type in type %}
-        <li><a href="{{ path('type_show', { id: type.id }) }}">{{ type.type }}</a></li>
-    {% endfor %}
-    </ul>
+    <h1>{{ locality.postalcode }} {{ locality.locality }}</h1>
+   <nav><a href="{{ path('locality_index') }}">Retour à l'index</a></nav>
+
 {% endblock %}
-

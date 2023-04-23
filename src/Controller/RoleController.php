@@ -18,7 +18,7 @@ class RoleController extends AbstractController
         //var_dump($artists);
 
         return $this->render('role/index.html.twig', [
-            'artists' => $roles,
+            'roles' => $roles,
             'resource' => 'roles',
         ]);
 
@@ -28,7 +28,7 @@ class RoleController extends AbstractController
     public function show(int $id, RoleRepository $repository): Response
     {
         //var_dump($id);
-        $role = $repository->find(intval($id));
+        $roles = $repository->find(intval($id));
 
         return $this->render('role/show.html.twig', [
             'role' => $roles,

@@ -6,9 +6,11 @@
     <h1>Liste des {{ resource }}</h1>
 
     <ul>
-    {% for type in type %}
+    {% for type in types %}
+
         <li><a href="{{ path('type_show', { id: type.id }) }}">{{ type.type }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}
 
+ 

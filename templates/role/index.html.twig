@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des types{% endblock %}
+{% block title %}Liste des roles {% endblock %}
 
 {% block body %}
     <h1>Liste des {{ resource }}</h1>
 
     <ul>
-    {% for type in type %}
-        <li><a href="{{ path('type_show', { id: type.id }) }}">{{ type.type }}</a></li>
+    {% for role in roles %}
+
+        <li><a href="{{ path('role_show', { id: role.id }) }}">{{ role.role }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

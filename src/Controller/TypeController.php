@@ -22,7 +22,7 @@ class TypeController extends AbstractController
         $type = $repository->findAll();
 
         return $this->render('type/index.html.twig', [
-            'type' => $type,
+            'types' => $type,
             'resource' => 'types',
         ]);
 
