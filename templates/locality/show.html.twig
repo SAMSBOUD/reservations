@@ -5,6 +5,15 @@
 {% block body %}
 
     <h1>{{ locality.postalcode }} {{ locality.locality }}</h1>
+    
+        <ul>
+
+         {% for location in locality.locations %}
+          <li>{{ location.designation }}</li>
+         {% endfor %}
+
+         </ul>
+
    <nav><a href="{{ path('locality_index') }}">Retour à l'index</a></nav>
 
 {% endblock %}

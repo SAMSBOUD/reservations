@@ -24,6 +24,7 @@ class LocalityController extends AbstractController
 
     } 
 
+/*
     #[Route('/{id}', name:'locality_show', methods: ['GET'])]
     public function show(int $id, LocalityRepository $repository): Response
     {
@@ -35,7 +36,19 @@ class LocalityController extends AbstractController
         ]);
     } 
 
+    */
     
+    #[Route("/locality/{id}", name:"locality_show")]
+    public function show(int $id,LocalityRepository $repository): Response
+    {
+        //$repository = $this->getDoctrine()->getRepository(Locality::class);
+        $locality = $repository->find(intval($id));
+
+        return $this->render('locality/show.html.twig', [
+            'locality' => $locality,
+        ]);
+    }
+
 }
 
 
