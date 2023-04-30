@@ -16,9 +16,13 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 class Location
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+
+#[ORM\OneToMany(targetEntity:"Representation::class", mappedBy:"the_location")]
+
     private ?int $id = null;
 
     #[ORM\Column(length: 60)]
@@ -53,9 +57,13 @@ class Location
     #[ORM\OneToMany(mappedBy: 'location', targetEntity: Show::class)]
     private Collection $shows;
 
+    #[ORM\OneToMany(mappedBy: 'the_location', targetEntity: Representation::class)]
+    private Collection $representations;
+
     public function __construct()
     {
         $this->shows = new ArrayCollection();
+        $this->representations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,6 +167,36 @@ class Location
             // set the owning side to null (unless already changed)
             if ($show->getLocation() === $this) {
                 $show->setLocation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Representation>
+     */
+    public function getRepresentations(): Collection
+    {
+        return $this->representations;
+    }
+
+    public function addRepresentation(Representation $representation): self
+    {
+        if (!$this->representations->contains($representation)) {
+            $this->representations->add($representation);
+            $representation->setTheLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepresentation(Representation $representation): self
+    {
+        if ($this->representations->removeElement($representation)) {
+            // set the owning side to null (unless already changed)
+            if ($representation->getTheLocation() === $this) {
+                $representation->setTheLocation(null);
             }
         }
 
