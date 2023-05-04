@@ -24,8 +24,10 @@ class Artist
 
     #[ORM\Column(length: 60)]
     private ?string $lastname = null;
+// enlever relation ManyToMany car autrement erreur reservations artist_type already exists. 
+ //   #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'artists')]
 
-    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'artists')]
+    #[ORM\OneToMany(targetEntity:ArtistType::class, mappedBy:"artist", orphanRemoval:true)]
     
     private Collection $types;
 
